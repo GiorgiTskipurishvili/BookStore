@@ -1,0 +1,138 @@
+<!-- <header>
+
+    <div class="header-container">
+
+        <span>წიგნების ჩამონათვალი :</span>
+
+        <div class="Input-fullname">
+            <span>შეიყვანეთ თქვენი სახელი და გვარი: </span>
+            <input type="text">
+        </div>        
+
+        <div class="basket">
+            <button [routerLink]="['/basket']">ჩემი კალათა/შეკვეთები (3)</button>
+        </div>
+        
+
+    </div>
+
+
+
+
+</header>
+
+
+
+<div class="main-container">
+
+
+
+<div class="book-card">
+
+    <div class="image">
+        <img src="assets/book.svg" alt="">
+    </div>
+
+    <div class="book-about">
+
+        <div class="book-about__inner">
+            <div>
+                <span>დასახელება:</span>
+                <p>Vepkhistyaosani</p>
+            </div>
+
+            <div>
+                <span>ავტორი:</span>
+                <p>Shota Rustaveli</p>
+            </div>
+            
+            <div>
+                <span>რაოდენობა:</span>
+                <p>5</p>
+            </div>
+            
+            <div class="field">
+                <p>რაოდენობა</p>
+                <div>
+                    <span class="decrement" >-</span>
+                    <input type="number">
+                    <span class="increment">+</span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+</div> -->
+
+
+
+<header>
+    <div class="header-container">
+      <span>წიგნების ჩამონათვალი :</span>
+  
+      <div class="Input-fullname">
+        <span>შეიყვანეთ თქვენი სახელი და გვარი: </span>
+        <input type="text" [(ngModel)]="fullName" placeholder="სახელი გვარი" />
+      </div>
+  
+      <div class="basket">
+        <!-- <button [disabled]="!isValidToProceed()" [routerLink]="['/basket']">ჩემი კალათა/შეკვეთები ({{basket.length}})</button> -->
+
+        <button (click)="goToBasket()">ჩემი კალათა/შეკვეთები ({{basket.length}})</button>
+      </div>
+    </div>
+  </header>
+  
+  <div class="main-container">
+    <div *ngIf="books.length === 0">Loading books...</div>
+    <div class="book-card" *ngFor="let book of books">
+      <div class="image">
+        <img src="assets/book.svg" alt="">
+      </div>
+  
+      <div class="book-about">
+        <div class="book-about__inner">
+          <div>
+            <span>დასახელება:</span>
+            <p>{{ book.title }}</p>
+          </div>
+  
+          <div>
+            <span>ავტორი:</span>
+            <p>{{ book.author }}</p>
+          </div>
+          
+          <div>
+            <span>დარჩენილი რაოდენობა:</span>
+            <p>{{ book.quantity }}</p>
+          </div>
+          
+
+
+          <div class="field">
+            <p>რაოდენობა</p>
+            <div>
+              <span class="decrement" (click)="decrementQuantity(book)">-</span>
+              <input type="number" [(ngModel)]="book.selectedQuantity" />
+              <span class="increment" (click)="incrementQuantity(book)">+</span>
+            </div>
+          </div>
+          <button 
+          (click)="addToBasket(book)" 
+          [disabled]="book.selectedQuantity <= 0 || book.selectedQuantity > book.quantity">
+          კალათაში დამატება
+        </button>
+        
+
+      
+    </div>
+  </div>
+  

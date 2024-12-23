@@ -1,0 +1,51 @@
+.showBookStore{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.img-logo{
+    width: 50px;
+    height: 50px;
+    background-color: #2869CA;
+    border-radius: 10px;
+}
+
+.BookStore-container{
+    height: 100%;
+    width: 100%;
+    background-color: #da0000;
+}
+
+
+.addbook-container{
+    width: 220px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #B7D4FF;
+    cursor: pointer;
+}
+
+.dicrement, .increment{
+    cursor: pointer;
+}
+
+.field-container{
+    display: flex;
+    flex-direction: row;
+    gap:30px;    
+}
+
+tr{
+    cursor: pointer;
+}
+tr:hover{
+    background-color: white;
+}
+
+.show-addbook__container{
+    background-color: green;
+}
+
+.update-book__container{
+    background-color: yellow;
+}

@@ -1,0 +1,147 @@
+<!-- <div class="main-container">
+    <h3>თქვენი კალათა:</h3>
+  
+    <div class="showBooks">
+      <table>
+        <thead>
+          <tr>
+            <th>დასახელება</th>
+            <th>რაოდენობა</th>
+            <th>ავტორი</th>
+            <th>ფასი</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of basket">
+            <td>{{ item.title }}</td>
+            <td>{{ item.selectedQuantity }}</td>
+            <td>{{ item.author }}</td>
+            <td>{{ item.price }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div class="amount-price">
+      <span>ჯამური ფასი:</span>
+      <p>{{ getTotalPrice() }}</p>
+      
+    </div>
+
+    <div class="buttons">
+        <button class="check-order" (click)="orderering()">შეკვეთა</button>
+        <button class="cancel-order" (click)="cancelOrder()">შეკვეთის გაუქმება</button>
+      </div>
+  </div>
+   -->
+
+   <!-- <div class="main-container">
+    <h3>თქვენი კალათა:</h3>
+
+    <div class="showBooks">
+        <p-table [value]="basket">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>დასახელება</th>
+                    <th>რაოდენობა</th>
+                    <th>ავტორი</th>
+                    <th>ფასი</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+                <tr>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.selectedQuantity }}</td>
+                    <td>{{ item.author }}</td>
+                    <td>{{ item.price | currency }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <div class="amount-price">
+        <span>ჯამური ფასი:</span>
+        <p>{{ getTotalPrice() | currency }}</p>
+    </div>
+
+    <div class="buttons">
+        <p-button label="შეკვეთა" icon="pi pi-check" (click)="orderering()" class="check-order"></p-button>
+        <p-button label="შეკვეთის გაუქმება" icon="pi pi-times" (click)="cancelOrder()" class="cancel-order" styleClass="p-button-danger"></p-button>
+    </div>
+</div> -->
+
+
+
+<div class="main-container">
+  <h3>თქვენი კალათა:</h3>
+
+  <div class="showBooks">
+
+      <p-table [value]="basket" [paginator]="true" [rows]="5" [globalFilterFields]="['title', 'selectedQuantity', 'author', 'price']">
+      
+
+          <ng-template pTemplate="header">
+              <tr>
+                  <th pSortableColumn="title">
+                      დასახელება
+                      <p-sortIcon field="title"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="selectedQuantity">
+                      რაოდენობა
+                      <p-sortIcon field="selectedQuantity"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="author">
+                      ავტორი
+                      <p-sortIcon field="author"></p-sortIcon>
+                  </th>
+                  <th pSortableColumn="price">
+                      ფასი
+                      <p-sortIcon field="price"></p-sortIcon>
+                  </th>
+              </tr>
+
+              <tr style="background-color: white; height: 50px; border: 1px solid black;">
+                  <th>
+                      <p-columnFilter type="text" field="title" placeholder="მოძებნე დასახელება" ariaLabel="Filter Title"></p-columnFilter>
+                  </th>
+                  <th>
+                      <p-columnFilter type="text" field="selectedQuantity" placeholder="მოძებნე რაოდენობა" ariaLabel="Filter Quantity"></p-columnFilter>
+                  </th>
+                  <th>
+                      <p-columnFilter type="text" field="author" placeholder="მოძებნე ავტორი" ariaLabel="Filter Author"></p-columnFilter>
+                  </th>
+                  <th>
+                      <p-columnFilter type="text" field="price" placeholder="მოძებნე ფასი" ariaLabel="Filter Price"></p-columnFilter>
+                  </th>
+              </tr>
+          </ng-template>
+      
+
+          <ng-template pTemplate="body" let-item>
+              <tr (click)="selectItemForEdit(item)">
+                  <td>{{ item.title }}</td>
+                  <td>{{ item.selectedQuantity }}</td>
+                  <td>{{ item.author }}</td>
+                  <td>{{ item.price | currency }}</td>
+              </tr>
+          </ng-template>
+
+
+          <ng-template pTemplate="emptymessage">
+              <tr>
+                  <td colspan="4">No items found in the basket.</td>
+              </tr>
+          </ng-template>
+      </p-table>
+  </div>
+
+  <div class="amount-price">
+      <span>ჯამური ფასი:</span>
+      <p>{{ getTotalPrice() | currency }}</p>
+  </div>
+
+  <div class="buttons">
+      <p-button label="შეკვეთა" icon="pi pi-check" (click)="orderering()" class="check-order"></p-button>
+      <p-button label="შეკვეთის გაუქმება" icon="pi pi-times" (click)="cancelOrder()" class="cancel-order" styleClass="p-button-danger"></p-button>
+  </div>
+</div>

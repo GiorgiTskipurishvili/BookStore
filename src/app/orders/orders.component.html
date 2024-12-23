@@ -1,0 +1,38 @@
+<header>
+    <h1>შეკვეთები</h1>
+  </header>
+  
+  <div class="main-container">
+    <div class="inner">
+      <h2>Fullnames</h2>
+      <div class="fullnames">
+        <div *ngFor="let fullname of fullnames" (click)="getOrdersByFullname(fullname)">
+          <h3>{{ fullname }}</h3>
+        </div>
+      </div>
+  
+
+      <div class="show-order-byfullname" *ngIf="selectedFullname">
+        <h3>Orders for {{ selectedFullname }}</h3>
+        <div class="showorder">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Quantity</th>
+                <th>Book ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orders">
+                <td>{{ order.id }}</td>
+                <td>{{ order.orderQuantity }}</td>
+                <td>{{ order.bookId }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
