@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { ApplicationConfig } from '@angular/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ManagerComponent } from './manager/manager.component';
@@ -15,6 +20,9 @@ import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { BasketComponent } from './basket/basket.component';
 import { OrdersComponent } from './orders/orders.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+
+
 
 @NgModule({
   declarations: [
@@ -33,9 +41,17 @@ import { OrdersComponent } from './orders/orders.component';
     TableModule,
     DialogModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    InputNumberModule,
+    
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync(),
+    providePrimeNG({
+        theme: {
+            preset: Aura
+        }
+    })],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

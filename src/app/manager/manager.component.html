@@ -99,8 +99,9 @@
 
 
 
-    <div class="addbook-container" (click)="toggleAddBook()">
-        <h2>+წიგნის დამატება</h2>
+    <div (click)="toggleAddBook()">
+        <!-- <h2>+წიგნის დამატება</h2> -->
+         <p-button>+წიგნის დამატება</p-button>
     </div>
 
 </div>
@@ -111,30 +112,42 @@
         <div class="row">
             <div class="field">
                 <p>დასახელება</p>
-                <input type="text" [(ngModel)]="newBook.title">
+                <!-- <input type="text" [(ngModel)]="newBook.title"> -->
+                <input type="text" pInputText [(ngModel)]="newBook.title" />
             </div>
             <div class="field">
                 <p>ფასი</p>
-                <input type="number" [(ngModel)]="newBook.price">
+                <!-- <input type="number" [(ngModel)]="newBook.price"> -->
+                <!-- <input pInputText  [(ngModel)]="newBook.price" /> -->
+                <p-inputNumber [(ngModel)]="newBook.price" mode="currency" currency="GEL" placeholder="Enter price"></p-inputNumber>
             </div>
         </div>
         <div class="row">
             <div class="field">
                 <p>ავტორი</p>
-                <input type="text" [(ngModel)]="newBook.author">
+                <!-- <input type="text" [(ngModel)]="newBook.author"> -->
+                <input type="text" pInputText [(ngModel)]="newBook.author" />
             </div>
             <div class="field">
                 <p>რაოდენობა</p>
                 <div>
-                    <span class="decrement" (click)="decrementQuantity()">-</span>
+                    <!-- <span class="decrement" (click)="decrementQuantity()">-</span>
                     <input type="number" [(ngModel)]="newBook.quantity">
-                    <span class="increment" (click)="incrementQuantity()">+</span>
+                    <span class="increment" (click)="incrementQuantity()">+</span> -->
+
+                    <p-button icon="pi pi-minus" class="decrement" (click)="decrementQuantity()">-</p-button>
+                    <p-inputNumber [(ngModel)]="newBook.quantity" [min]="1" [step]="1" showButtons="true"></p-inputNumber>
+                    <p-button icon="pi pi-plus" class="increment" (click)="incrementQuantity()">+</p-button>
                 </div>
             </div>
         </div>
     </div>
-    <button (click)="addBook()">დამატება</button>
+    <!-- <button (click)="addBook()">დამატება</button> -->
+    <p-button label="დამატება" (click)="addBook()"></p-button>
 </div>
+
+
+
 
 
 
@@ -144,26 +157,34 @@
       <div class="row">
         <div class="field">
           <p>დასახელება</p>
-          <input type="text" [(ngModel)]="selectedBook.title" />
+          <input pInputText type="text" [(ngModel)]="selectedBook.title" />
+          
         </div>
         <div class="field">
           <p>ფასი</p>
-          <input type="number" [(ngModel)]="selectedBook.price"  />
+          <input  type="number" [(ngModel)]="selectedBook.price"  />
         </div>
       </div>
       <div class="row">
         <div class="field">
           <p>ავტორი</p>
-          <input type="text" [(ngModel)]="selectedBook.author" />
+          <input type="text" pInputText [(ngModel)]="selectedBook.author" />
         </div>
         <div class="field">
           <p>რაოდენობა</p>
-          <input type="number" [(ngModel)]="selectedBook.quantity" disabled/>
+          <input type="number" pInputText [disabled]="true" [(ngModel)]="selectedBook.quantity" />
         </div>
       </div>
     </div>
-    <button class="saveButton" (click)="updateBook()">შენახვა</button>
-    <button class="deleteButton" (click)="deleteBook()">წაშლა</button>
+
+
+    <!-- <button class="saveButton" (click)="updateBook()">შენახვა</button> -->
+     <p-button (click)="updateBook()">შენახვა</p-button>
+     <!-- <p-button label="შენახვა" (click)="updateBook()"></p-button> -->
+    <!-- <button class="deleteButton" (click)="deleteBook()">წაშლა</button> -->
+     <p-button (click)="deleteBook()" severity="danger">წაშლა</p-button>
+
+
 
 </div>
 

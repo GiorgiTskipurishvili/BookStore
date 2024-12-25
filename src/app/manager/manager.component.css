@@ -49,3 +49,8 @@ tr:hover{
 .update-book__container{
     background-color: yellow;
 }
+
+.red-button {
+    background-color: red; 
+    color: white; /* Optional, for better readability */
+}
